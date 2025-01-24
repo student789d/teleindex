@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<meta name="generator" content="https://t.me/syndic4te"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="{{ app.router['static_res'].url_for(filename='css/tailwind.rx.css') }}" rel="stylesheet"/>
+	<style>
+		* {
+			font-family: 'Roboto', 'Liberation Sans', 'Noto Sans', sans-serif;
+		}
+		/*.TgIndexHeader {
+			user-select: none;
+		}*/
+		.TgIndexActionButton {
+			display: inline-block;
+			margin: 0.5em;
+		}
+	</style>
+	<style id="StylesheetDarkTheme">
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: #000000 !important;
+			}
+			.shadow {
+				--tw-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06);
+				box-shadow: var(--tw-ring-offset-shadow, 255 255 #FFFF), var(--tw-ring-shadow, 255 255 #FFFF), var(--tw-shadow);
+			}
+			.hover\:shadow-lg:hover {
+				--tw-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+				box-shadow: var(--tw-ring-offset-shadow, 255 255 #FFFF), var(--tw-ring-shadow, 255 255 #FFFF), var(--tw-shadow);
+			}
+			.TgMessageCard {
+				color: #ffffff;
+				background-color: #000000;
+			}
+			.TgChatCard:hover {
+				background-color: #241501;
+			}
+
+		}
+	</style>
+	<script src="{{ app.router['static_res'].url_for(filename='js/fluidplayer.min.js') }}" type="text/javascript"></script>
+	<script>
+	(function(){
+	//	var Doc = document.documentElement;
+	//	Doc.className = 'light';
+	//	if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+	//		Doc.className = 'dark';
+	//		//StylesheetDarkTheme.innerHTML = StylesheetDarkTheme.innerHTML.trim().split('{').slice(1).join('{').split('}').slice(0, -1).join('}');
+	//	} else {
+	//		Doc.className = 'light';
+	//		//StylesheetDarkTheme.innerHTML = `@media (prefers-color-scheme: dark) { ${StylesheetDarkTheme.innerHTML} }`;
+	//	};
+	})();
+	</script>
+	<title>
+		{% if title %} {{ title }} {% else %} FireFlix {% endif %}
+	</title>
+	<meta property="og:title" content="{% if title %} {{ title }} {% else %} FireFlix {% endif %}">
+	{% if text_html or caption_html %}
+		<meta name="description" content="{{ text_html }}{{ caption_html }}"/>
+		<meta property="og:description" content="{{ text_html }}{{ caption_html }}"/>
+	{% endif %}
+	{% if media and media.image %}
+		<meta property="og:image" content="{{ thumbnail }}"/>
+	{% endif %}
+</head>
+
+<body class="bg-white text-black dark:bg-black dark:text-white" style="overflow-x: hidden;">
+
+	<header class="TgIndexHeader bg-blue-300 dark:bg-red-500 text-white mb-2 p-2 w-full shadow">
+		<div class="flex mx-auto justify-between items-center max-w-screen-xl">
+			<span class="space-x-3">
+				<a href="/" id="title-a" class="text-left font-bold text-xl lg:text-2xl xl:text-3xl">FireFlix</a><!--
+				-->{% if found %}<span>[<a href=".." class="text-left font-bold">Up</a>]</span>{% endif %}
+				<!--{% if item_list %}<span>[<a href="./feed.xml" class="text-left font-bold">Feed</a>]</span>{% endif %}-->
+			</span>
+			<div class="space-x-1">
+				<span style="vertical-align: super; white-space: pre;">[<a 
+				href="https://t.me/syndic4te" class="font-bold underline"
+				>Source Code</a>]</span>
+				<!--<button onclick="toggleTheme()" class="rounded-full bg-white">
+					<img src="{{ app.router['static_res'].url_for(filename='icons/sun.png') }}" class="h-8" alt="Theme"/>
+				</button>-->
+		{% if authenticated %}
+			<button class="rounded-full bg-white"><a href="/logout">
+			<img src="{{ app.router['static_res'].url_for(filename='icons/logout.png') }}" class="h-8" alt="Logout">
+			</a></button>
+		{% else %} {% endif %}
+			</div>
+		</div>
+
+	</header>
+	<div class="m-auto w-full max-w-screen-xl">
